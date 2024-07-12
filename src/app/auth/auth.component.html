@@ -1,0 +1,23 @@
+<ActionBar class="action-bar" title="Acceso" flat="true" backgroundColor="#D0D0D0"/>
+<FlexboxLayout flexDirection="column" backgroundColor="#D0D0D0">
+  <Image src="~/assets/logo.png" height="300"/>
+  <form [formGroup]="authForm">
+
+    <Label text="Nombre de usuario" class="label"></Label>
+    <TextField hint="Nombre de usuario" formControlName="username" autocorrect="false" autocapitalizationType="none" class="text-field"
+    [class.invalid]="authForm.get('username').errors && authForm.get('username').touched"/>
+    <ng-container *ngIf="authForm.get('username').errors && authForm.get('username').touched">
+      <Label *ngIf="authForm.get('username').hasError('required')" text="Usuario es requerido" class="error-message"></Label>
+    </ng-container>
+  
+    <Label text="Contraseña" class="label"></Label>
+    <TextField hint="Contraseña" formControlName="password" secure="true" class="text-field"
+    [class.invalid]="authForm.get('password').errors && authForm.get('password').touched"/>
+    <ng-container *ngIf="authForm.get('password').errors && authForm.get('password').touched">
+      <Label *ngIf="authForm.get('password').hasError('required')" text="Contraseña es requerida" class="error-message"></Label>
+    </ng-container>
+  
+    <Button text="Entrar" class="button" (tap)="submit()"></Button>
+
+  </form>
+</FlexboxLayout>
