@@ -1,0 +1,43 @@
+.label {
+  margin-left: 30px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.error-message {
+  margin-left: 30px;
+  color: red;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.text-field {
+  height: 150px;
+  margin: 20px;
+  padding: 10px;
+  border-width: 4px;
+  border-color: #cccccc;
+  border-radius: 20px;
+  background-color: #ffffff;
+  font-size: 15px;
+}
+
+.text-field:focus {
+  border-color: #F2A714;
+}
+
+.text-field.invalid {
+  border-color: red;
+}
+
+.button {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 30px;
+  margin: 20px;
+  padding: 10px;
+  background-color: #F2A714;
+  color: black;
+  border-radius: 20;
+}
