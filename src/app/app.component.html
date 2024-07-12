@@ -2,8 +2,8 @@
   <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
     <StackLayout row="0" class="nt-drawer__header">
       <Image class="nt-drawer__header-image fas t-36" src="font://&#xf2bd;"></Image>
-      <Label class="nt-drawer__header-brand" text="User Name"></Label>
-      <Label class="nt-drawer__header-footnote" text="username@mail.com"></Label>
+      <Label class="nt-drawer__header-brand" [text]="auth.dataState.get('name')"></Label>
+      <Label class="nt-drawer__header-footnote" [text]="auth.dataState.get('username')"></Label>
     </StackLayout>
 
     <ScrollView row="1" class="nt-drawer__body">
@@ -50,19 +50,13 @@
 
         <StackLayout class="hr"></StackLayout>
 
-        <GridLayout
-          columns="auto, *"
-          class="nt-drawer__list-item"
-          [class.-selected]="isComponentSelected('/settings')"
-          (tap)="onNavItemTap('/settings')"
-        >
-          <Label col="0" text="&#xf013;" class="nt-icon fas"></Label>
-          <Label col="1" text="Settings" class="p-r-10"></Label>
+        <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="logout()">
+          <Label col="0" text="&#xf2f5;" class="nt-icon fas"></Label>
+          <Label col="1" text="Cerrar sesión" class="p-r-10"></Label>
         </GridLayout>
       </StackLayout>
     </ScrollView>
   </GridLayout>
-
   <GridLayout tkMainContent>
     <page-router-outlet></page-router-outlet>
   </GridLayout>

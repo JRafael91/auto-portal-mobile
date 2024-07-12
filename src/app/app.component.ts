@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router'
 import { RouterExtensions } from '@nativescript/angular'
 import {
@@ -8,18 +8,22 @@ import {
 } from 'nativescript-ui-sidedrawer'
 import { filter } from 'rxjs/operators'
 import { Application } from '@nativescript/core'
+import { AuthService } from './services/auth.service'
 
 @Component({
   selector: 'ns-app',
   templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit {
+
+  private readonly router = inject(Router);
+  private readonly routerExtensions = inject(RouterExtensions);
+  public readonly auth = inject(AuthService);
+
+
   private _activatedUrl: string
   private _sideDrawerTransition: DrawerTransitionBase
 
-  constructor(private router: Router, private routerExtensions: RouterExtensions) {
-    // Use the component constructor to inject services.
-  }
 
   ngOnInit(): void {
     this._activatedUrl = '/home'
@@ -44,8 +48,17 @@ export class AppComponent implements OnInit {
         name: 'fade',
       },
     })
-
     const sideDrawer = <RadSideDrawer>Application.getRootView()
     sideDrawer.closeDrawer()
+  }
+
+  logout() {
+    const sideDrawer = <RadSideDrawer>Application.getRootView();
+    this.auth.logout().subscribe({
+      next: () => {
+        sideDrawer.closeDrawer()
+        this.routerExtensions.navigate(['/auth'], { clearHistory: true, transition: { name: 'fade' } });
+      },
+    });
   }
 }
