@@ -1,0 +1,32 @@
+<ActionBar class="action-bar">
+  <NavigationButton visibility="hidden"></NavigationButton>
+  <GridLayout columns="50, *">
+    <Label class="action-bar-title" text="Detalles" colSpan="2"></Label>
+    <Label text="&#xf053;" class="nt-icon fas" (tap)="goBack()"></Label>
+  </GridLayout>
+</ActionBar>
+<AbsoluteLayout>
+  <StackLayout>
+    <FlexboxLayout flexDirection="column" class="layout">
+      <Label [text]="'#'+order?.uid" class="title"></Label>
+      <Label [text]="order?.customer" class="subtitle"></Label>
+    </FlexboxLayout>
+    <Label text="Automovil" class="header"></Label>
+    <FlexboxLayout flexDirection="row" class="layout">
+      <Label [text]="order?.year + ' ' + order?.model" class="title"></Label>
+      <Label [text]="' ' + order?.brand" class="subtitle"></Label>
+    </FlexboxLayout>
+    <Label text="Detalles" class="header"></Label>
+    <FlexboxLayout flexDirection="row" class="layout">
+      @for(item of order?.items; track item.id) {
+        <Label [text]="item.product.name + '\t x' + item.quantity" class="item"></Label>
+      }
+    </FlexboxLayout>
+  </StackLayout>  
+  <!-- Botón flotante -->
+  <Button class="fab" tap="onFabTap" marginLeft="78%" marginTop="85%">
+    <FormattedString>
+      <Label text="&#xf030;" class="nt-icon fas icon"></Label>
+    </FormattedString>
+  </Button>
+</AbsoluteLayout>
