@@ -5,6 +5,7 @@ import { OrderService } from '../services/order.service'
 import { IOrder } from '../interfaces/order';
 import { LoadingService } from '../services/loading.service';
 import { RouterExtensions } from '@nativescript/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'Home',
@@ -20,8 +21,18 @@ export class HomeComponent implements OnInit {
 
   search: string = '';
 
+  refreshSubscription: Subscription;
+
   ngOnInit(): void {
+    this.refreshSubscription = this.orderService.refresh$.subscribe(() => {
+      this.getOrders();
+    });
     this.getOrders();
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destroyed');
+    this.refreshSubscription.unsubscribe();
   }
 
   onItemTap(item: ItemEventData) {
@@ -41,7 +52,6 @@ export class HomeComponent implements OnInit {
   private getOrders() {
     this.orderService.getOrders().subscribe(data => {
       this.orders = data;
-      console.log(data);
     });
   }
 }

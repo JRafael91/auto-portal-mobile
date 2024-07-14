@@ -1,7 +1,7 @@
 <ActionBar class="action-bar">
   <NavigationButton visibility="hidden"></NavigationButton>
   <GridLayout columns="50, *">
-    <Label class="action-bar-title" text="Detalles" colSpan="2"></Label>
+    <Label class="action-bar-title" [text]="'Orden #' + order?.uid" colSpan="2"></Label>
     <Label text="&#xf053;" class="nt-icon fas" (tap)="goBack()"></Label>
   </GridLayout>
 </ActionBar>
@@ -10,16 +10,23 @@
     <FlexboxLayout flexDirection="column" class="layout">
       <Label [text]="'#'+order?.uid" class="title"></Label>
       <Label [text]="order?.customer" class="subtitle"></Label>
+      <SegmentedBar 
+        [items]="segmentedBarItems"
+        [selectedIndex]="status"
+        selectedBackgroundColor="#00000033"
+        (selectedIndexChange)="changeStatus($event)"
+        class="segmented-bar"
+      />
     </FlexboxLayout>
-    <Label text="Automovil" class="header"></Label>
+    <Label text="Automóvil" class="header"></Label>
     <FlexboxLayout flexDirection="row" class="layout">
       <Label [text]="order?.year + ' ' + order?.model" class="title"></Label>
       <Label [text]="' ' + order?.brand" class="subtitle"></Label>
     </FlexboxLayout>
     <Label text="Detalles" class="header"></Label>
-    <FlexboxLayout flexDirection="row" class="layout">
+    <FlexboxLayout flexDirection="column" class="layout">
       @for(item of order?.items; track item.id) {
-        <Label [text]="item.product.name + '\t x' + item.quantity" class="item"></Label>
+        <Label [text]="item.product.name" class="item"></Label>
       }
     </FlexboxLayout>
   </StackLayout>  
