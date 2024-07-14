@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AlertService } from './alert.service';
+import { environment } from '../environments/environment';
+import { IOrder } from '../interfaces/order';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OrderService {
+
+  private readonly API_URL = environment.API_URL;
+
+  constructor(private http: HttpClient, private alertService: AlertService) {}
+
+  getOrders() {
+    return this.http.get<IOrder[]>(`${this.API_URL}/orders`)
+    .pipe(
+      catchError((err) => {
+        this.alertService.error('Error', `${err.error.message}`);
+        return of([]);
+      })
+    )
+  }
+
+  getOrder(uid: string) {
+    return this.http.get<IOrder>(`${this.API_URL}/orders/${uid}`)
+    .pipe(
+      catchError((err) => {
+        this.alertService.error('Error', `${err.error.message}`);
+        return of(null);
+      })
+    )
+  }
+}

@@ -2,12 +2,38 @@
   <NavigationButton visibility="hidden"></NavigationButton>
   <GridLayout columns="50, *">
     <Label class="action-bar-title" text="Órdenes" colSpan="2"></Label>
-
     <Label class="fas" text="&#xf0c9;" (tap)="onDrawerButtonTap()"></Label>
   </GridLayout>
 </ActionBar>
+<FlexboxLayout flexDirection="column">
+  <TextField hint="Buscador..." class="searcher" width="100%" height="50" ngModel [(ngModel)]="search"/>
+  <ng-container *ngIf="(orders | orderFilter: search)?.length > 0 else noOrders">
 
-<GridLayout class="page__content">
-  <Label class="page__content-icon fas" text="&#xf015;"></Label>
-  <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+  </ng-container>
+  <ListView [items]="orders | orderFilter: search" (itemTap)="onItemTap($event)" class="list-view" separatorColor="transparent">
+    <ng-template let-item="item" class="list-item">
+      <StackLayout>
+        <GridLayout class="card" rows="auto, *">
+          <FlexboxLayout justifyContent="space-between" class="card-header">
+            <Label [text]="item.customer" class="card-title"></Label>
+            <Label [text]="'#'+ item.uid" class="card-title"></Label>
+          </FlexboxLayout>
+          <FlexboxLayout row="1" class="card-body" alignItems="center" justifyContent="space-between">
+            <Image [src]="item.vehicle == 'SEDAN' ? '~/assets/sedan.png' : '~/assets/pickup.png'" height="92" />
+            <WrapLayout orientation="vertical">
+              <Label [text]="item.brand" class="font-weight-bold"></Label>
+              <Label [text]="item.model" class="font-weight-bold"></Label>
+              <Label [text]="item.year" class="font-weight-bold"></Label>
+            </WrapLayout>
+            <Label [text]="item.status" class="badge" [class]="item.status" height="38" width="110"></Label>
+          </FlexboxLayout>
+        </GridLayout>
+      </StackLayout>
+    </ng-template>
+  </ListView>
+</FlexboxLayout>
+
+
+<ng-template #noOrders>
+  <empty/>
+</ng-template>
