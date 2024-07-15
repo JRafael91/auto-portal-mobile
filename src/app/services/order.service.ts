@@ -28,6 +28,16 @@ export class OrderService {
     )
   }
 
+  getOrdersFinished() {
+    return this.http.get<IOrder[]>(`${this.API_URL}/orders/technic/finished`)
+    .pipe(
+      catchError((err) => {
+        this.alertService.error('Error', `${err.error.message}`);
+        return of([]);
+      })
+    )
+  }
+
   getOrder(uid: string) {
     return this.http.get<IOrder>(`${this.API_URL}/orders/${uid}`)
     .pipe(

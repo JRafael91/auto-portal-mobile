@@ -19,8 +19,8 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'browse',
-    loadChildren: () => import('~/app/browse/browse.module').then((m) => m.BrowseModule),
+    path: 'orders_finished',
+    loadChildren: () => import('~/app/finished/finished.module').then((m) => m.FinishedModule),
   }
 ]
 

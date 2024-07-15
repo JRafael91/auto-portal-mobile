@@ -1,0 +1,63 @@
+.list-view {
+  margin-left: 10;
+  margin-right: 10;
+}
+
+.searcher {
+  margin-top: 20;
+  min-height: 50;
+  padding: 10;
+  border-width: 4px;
+  border-color: #cccccc;
+  border-radius: 20px;
+  background-color: #ffffff;
+  font-size: 15;
+}
+.card {
+  background-color: rgba(185, 185, 185, 0.5);
+  border-radius: 10;
+  padding: 10;
+  box-shadow: 0 4 4 rgba(0, 0, 0, 0.1);
+}
+.badge {
+  color: black;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 180px;
+  padding: 30px;
+  text-align: center;
+}
+.font-weight-bold {
+  font-size: 16px;
+}
+.GENERADO {
+  background-color: #3B82F6;
+}
+.PROCESO {
+  background-color: #F2A714;
+}
+.FINALIZADO {
+  background-color: #06B576;
+}
+
+/* Styles for the card header */
+.card-header {
+margin-bottom: 10px;
+}
+
+/* Styles for the card title */
+.card-title {
+font-size: 18px;
+font-weight: bold;
+}
+
+/* Styles for the card body */
+.card-body {
+margin-top: 10px;
+}
+
+/* Styles for the card content */
+.card-content {
+font-size: 14px;
+color: #666;
+}

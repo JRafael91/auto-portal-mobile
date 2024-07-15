@@ -1,20 +1,22 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
 import { NativeScriptCommonModule, NativeScriptFormsModule } from '@nativescript/angular'
+
+import { FinishedRoutingModule } from './finished-routing.module'
+import { FinishedComponent } from './finished.component'
 import { FormsModule } from '@angular/forms'
-import { HomeRoutingModule } from './home-routing.module'
-import { HomeComponent } from './home.component'
 import { OrderFilterPipe } from '../utils/order-filter.pipe'
 import { EmptyComponent } from '../utils/empty.component'
+
 @NgModule({
   imports: [
     NativeScriptCommonModule,
     NativeScriptFormsModule,
+    FinishedRoutingModule,
     FormsModule,
-    HomeRoutingModule,
     OrderFilterPipe,
     EmptyComponent,
   ],
-  declarations: [HomeComponent],
+  declarations: [FinishedComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })
-export class HomeModule {}
+export class FinishedModule {}
