@@ -10,6 +10,7 @@ export interface IOrder {
   status: Status;
 
   items: any[];
+  images: any[];
 }
 
 export enum Vehicle{

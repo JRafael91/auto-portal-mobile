@@ -5,7 +5,7 @@ import { HomeRoutingModule } from './home-routing.module'
 import { HomeComponent } from './home.component'
 import { OrderFilterPipe } from '../utils/order-filter.pipe'
 import { EmptyComponent } from '../utils/empty.component'
-import { DetailsComponent } from './details/details.component'
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
