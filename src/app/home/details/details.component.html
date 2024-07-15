@@ -5,8 +5,8 @@
     <Label text="&#xf053;" class="nt-icon fas" (tap)="goBack()"></Label>
   </GridLayout>
 </ActionBar>
-<AbsoluteLayout>
-  <StackLayout>
+<ScrollView class="scroll-view" orientation="vertical" [isScrollEnabled]="true">
+  <StackLayout padding="12">
     <FlexboxLayout flexDirection="column" class="layout">
       <Label [text]="'#'+order?.uid" class="title"></Label>
       <Label [text]="order?.customer" class="subtitle"></Label>
@@ -29,9 +29,16 @@
         <Label [text]="item.product.name" class="item"></Label>
       }
     </FlexboxLayout>
+    <WrapLayout orientation="horizontal">
+      @for(img of order?.images; track img.id) {
+        <Image [src]="STORAGE_URL + '/' + img.image" col="0" row="0" col="0" stretch="aspectFill" width="50%"></Image>
+      }
+    </WrapLayout>
   </StackLayout>  
+</ScrollView>
+<AbsoluteLayout>
   <!-- Botón flotante -->
-  <Button class="fab" tap="onFabTap" marginLeft="78%" marginTop="85%">
+  <Button class="fab" tap="onFabTap" marginLeft="78%" marginTop="85%" (tap)="takePhoto()">
     <FormattedString>
       <Label text="&#xf030;" class="nt-icon fas icon"></Label>
     </FormattedString>
