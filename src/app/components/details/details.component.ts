@@ -1,19 +1,24 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import * as camera from "@nativescript/camera";
 import { ImageSource } from "@nativescript/core";
 import { ActivatedRoute } from '@angular/router';
-import { RouterExtensions } from '@nativescript/angular';
+import { NativeScriptCommonModule, RouterExtensions } from '@nativescript/angular';
 import { EventData } from '@nativescript/core';
 import { SegmentedBar, SegmentedBarItem } from '@nativescript/core/ui/segmented-bar';
-import { IOrder } from '~/app/interfaces/order';
-import { LoadingService } from '~/app/services/loading.service';
-import { OrderService } from '~/app/services/order.service';
-import { environment } from '~/app/environments/environment';
+import { IOrder } from '../../interfaces/order';
+import { LoadingService } from '../../services/loading.service';
+import { OrderService } from '../../services/order.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'ns-details',
+  standalone: true,
   templateUrl: './details.component.html',
+  imports: [NativeScriptCommonModule],
   styleUrls: ['./details.component.scss'],
+  schemas: [NO_ERRORS_SCHEMA],
+
+
 })
 export class DetailsComponent implements OnInit {
 

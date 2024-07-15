@@ -37,10 +37,11 @@
   </StackLayout>  
 </ScrollView>
 <AbsoluteLayout>
-  <!-- Botón flotante -->
-  <Button class="fab" tap="onFabTap" marginLeft="78%" marginTop="85%" (tap)="takePhoto()">
-    <FormattedString>
-      <Label text="&#xf030;" class="nt-icon fas icon"></Label>
-    </FormattedString>
-  </Button>
+  @if(order?.status !== 'FINALIZADO') {
+    <Button class="fab" tap="onFabTap" marginLeft="78%" marginTop="85%" (tap)="takePhoto()">
+      <FormattedString>
+        <Label text="&#xf030;" class="nt-icon fas icon"></Label>
+      </FormattedString>
+    </Button>
+  }
 </AbsoluteLayout>
